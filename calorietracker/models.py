@@ -42,7 +42,7 @@ class Goal(db.Model):
     days = db.Column(db.Integer, nullable=False)
     date_created = db.Column(
         db.DateTime, nullable=False, default=datetime.now())
-    start_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    start_date = db.Column(db.Date, nullable=False, default=date.today())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     Days = db.relationship('Day', backref='goal', lazy=True)
 

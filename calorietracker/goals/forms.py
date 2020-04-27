@@ -8,4 +8,4 @@ class GoalForm(FlaskForm):
     weight = IntegerField('Weight to Loose', validators=[DataRequired()])
     days = IntegerField('Days to achieve Goal', validators=[DataRequired()])
     start_date = DateField('Start Date',validators=[DataRequired()])
-    submit = SubmitField('Add Goal')
+    submit = SubmitField('Go')
