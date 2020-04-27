@@ -1,6 +1,6 @@
 from flask import current_app
 from calorietracker import db, login_manager
-from datetime import datetime
+from datetime import datetime, date
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False,
                            default='default.jpeg')
     password = db.Column(db.String(60), nullable=False)
-    # posts = db.relationship('Post', backref='author', lazy=True)
+    goal = db.relationship('Goal', backref='person', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -35,6 +35,30 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}','{self.email}','{self.image_file}')"
 
+
+class Goal(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    weight = db.Column(db.Integer, nullable=False)
+    days = db.Column(db.Integer, nullable=False)
+    date_created = db.Column(
+        db.DateTime, nullable=False, default=datetime.now())
+    start_date = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    Days = db.relationship('Day', backref='goal', lazy=True)
+
+
+class Day(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    breakfast = db.Column(db.Integer, nullable=False, default=0)
+    breakfast_img_file = db.Column(db.String(20), nullable=False,
+                                   default='default.jpeg')
+    lunch = db.Column(db.Integer, nullable=False, default=0)
+    lunch_img_file = db.Column(db.String(20), nullable=False,
+                               default='default.jpeg')
+    dinner = db.Column(db.Integer, nullable=False, default=0)
+    dinner_img_file = db.Column(db.String(20), nullable=False,
+                                default='default.jpeg')
+    goal_id = db.Column(db.Integer, db.ForeignKey('goal.id'), nullable=False)
 
 # class Post(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)

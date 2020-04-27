@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+{%if goal%}
+display Goal
+{% else %}
+<div class=container-fluid>
+    You currently do not have any goal
+    <a href="{{url_for('goals.add_goal')}}">Click here to add a new goal</a>
+</div>
+{% endif %}
+{% endblock content %}

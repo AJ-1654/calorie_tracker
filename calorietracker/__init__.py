@@ -24,11 +24,12 @@ def create_app(config_class=Config):
 
     from calorietracker.users.routes import users
     from calorietracker.main.routes import main
+    from calorietracker.goals.routes import goals
     # from calorietracker.posts.routes import posts
     # from calorietracker.errors.handlers import errors
 
     app.register_blueprint(users)
-    # app.register_blueprint(posts)
+    app.register_blueprint(goals)
     app.register_blueprint(main)
     # app.register_blueprint(errors)
 
