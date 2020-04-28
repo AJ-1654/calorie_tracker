@@ -70,16 +70,6 @@ def account():
     return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 
-# @users.route("/user/<string:username>")
-# def user_post(username):
-#     page = request.args.get('page', 1, type=int)
-#     user = User.query.filter_by(username=username).first_or_404()
-#     posts = Post.query.filter_by(author=user)\
-#         .order_by(Post.date_posted.desc())\
-#         .paginate(page=page, per_page=2)
-#     return render_template('user_post.html', posts=posts, user=user)
-
-
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:

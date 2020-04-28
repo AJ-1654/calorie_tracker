@@ -44,7 +44,7 @@ class Goal(db.Model):
         db.DateTime, nullable=False, default=datetime.now())
     start_date = db.Column(db.Date, nullable=False, default=date.today())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    Days = db.relationship('Day', backref='goal', lazy=True)
+    days_list = db.relationship('Day', backref='goal', lazy=True)
 
 
 class Day(db.Model):
@@ -58,15 +58,5 @@ class Day(db.Model):
     dinner = db.Column(db.Integer, nullable=False, default=0)
     dinner_img_file = db.Column(db.String(20), nullable=False,
                                 default='default.jpeg')
+    day_date = db.Column(db.Date, nullable=False, default=date.today())
     goal_id = db.Column(db.Integer, db.ForeignKey('goal.id'), nullable=False)
-
-# class Post(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     title = db.Column(db.String(100), nullable=False)
-#     date_posted = db.Column(db.DateTime, nullable=False,
-#                             default=datetime.utcnow)
-#     content = db.Column(db.Text, nullable=False)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-#     def __repr__(self):
-#         return f"Post('{self.title}','{self.date_posted}')"

@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
+<div>
+    <a class="btn btn-secondary m-2" href="{{ url_for('goals.display_goal') }}">Back</a>
+</div>
 <div class="content-section">
     <form method="POST" action="">
         {{ form.hidden_tag() }}
