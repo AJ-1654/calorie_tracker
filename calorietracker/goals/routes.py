@@ -64,6 +64,10 @@ def delete_goal(goal_id):
     goal = Goal.query.get_or_404(goal_id)
     if goal.person != current_user:
         abort(403)
+
+    days = Day.query.filter_by(goal=goal)
+    for day in days:
+        db.session.delete(day)
     db.session.delete(goal)
     db.session.commit()
     flash('Your Goal has been deleted', 'success')
