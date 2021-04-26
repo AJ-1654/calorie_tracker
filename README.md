@@ -1,4 +1,4 @@
-# Calorimeter #
+# Calorie Tracker #
 A full stack web application that helps you track your dietary habits and calorie intake. Calorimeter allows users to estimate the calories
 in any food item image with just one click. To estimate the calories, Calorimeter uses a food classification and calorie estimation model 
 built by fine tuning Inception V3 pre trained network on 30 classes of FOOD-101 dataset. The following functionalities have been provided 
